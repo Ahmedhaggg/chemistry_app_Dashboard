@@ -18,7 +18,8 @@ code {
 
 :root {
   --mainColor: #d32f2f;
-  --secondColor: #ef5350;
+  --lightMainColor: #ef5350;
+  --secondColor: #0c54bc;
   --whiteColor: #ffebee;
   --blackColor: #1f1d1d;
 }
@@ -55,15 +56,26 @@ code {
   color: var(--blackColor);
 }
 
-/* start sidebar */
-.sidebar {
-  min-width: 300px;
-  max-width: 300px;
-  background-color: var(--mainColor)
+/* dashboard */
+.dashboard-section {
+  padding-top: 70px;
+  text-align: center;
 }
 
+.dashboard-item {
+  height: 200px;
+  transition: 0.4s;
+}
+
+.dashboard-item:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 6px -1px #888888;
+}
+
+/* start sidebar */
 .nav-pills .nav-link {
   border-radius: 0%;
+  font-size: 13px;
 }
 
 .nav-pills .nav-link:hover {
@@ -72,7 +84,5 @@ code {
 }
 
 .content {
-  overflow: scroll;
-  height: 100vh;
-  width: calc(100% - 250px);
+  width: calc(100% - 300px)
 }

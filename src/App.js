@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import Store from "./store/index";
 import React from 'react';
 import './App.css';
+import Dashboard from "./views/dashboard";
 import Layout from "./components/layouts/Layout"
 import Login from "./views/auth/Login"
 import Grades from "./views/grade";
@@ -22,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/login" exact element={<Login />} />
             <Route path="/*" element={<Layout />}>
-              <Route index element={<>hello</>} />
+              <Route index element={<Dashboard />} />
               <Route path="grades/*">
                 <Route index element={<Grades />} />
                 <Route path="create" element={<CreateGrade />} />

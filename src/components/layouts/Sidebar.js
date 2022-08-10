@@ -2,20 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-    return <div className="sidebar position-fixed h-100 top-0 start-0 d-none d-lg-block bg-main-color">
-        <p className="fs-3 ps-3 pt-4 text-white-color">chemistry</p>
-        <nav className="h-100 flex-column align-items-stretch border-end">
+    return <div className="bg-main-color">
+        <p className="fs-4 ps-3 pt-5 text-white-color">chemistry</p>
+        <nav className="h-100 flex-column align-items-stretch ps-2">
             <nav className="nav nav-pills flex-column">
-                <Link className="nav-link text-white-color" to="/admin/grades">students</Link>
+                <Link className="nav-link text-white-color" to="/grades">Dashboard</Link>
+                <Link className="nav-link text-white-color" to="/grades">grades</Link>
+                <Link className="nav-link text-white-color" to="/courses">courses</Link>
+                <Link className="nav-link text-white-color" to="#item-3">courses units</Link>
                 <nav className="nav nav-pills flex-column">
-                    <Link className="nav-link text-white-color ms-3 my-1" to="/admin/students/"></Link>
-                    <Link className="nav-link text-white-color ms-3 my-1" to="#item-1-2">Item 1-2</Link>
+                    <Link className="nav-link text-white-color ms-3 my-1" to="/units/lessons">lessons</Link>
+                    <Link className="nav-link text-white-color ms-3 my-1" to="/units/revisions">revisions</Link>
+                    <Link className="nav-link text-white-color ms-3 my-1" to="/units/revisions">exam</Link>
                 </nav>
-                <Link className="nav-link text-white-color" to="#item-2">Item 2</Link>
-                <Link className="nav-link text-white-color" to="#item-3">Item 3</Link>
+                <Link className="nav-link text-white-color" to="/courses">courses revisions</Link>
+                <Link className="nav-link text-white-color" to="#item-3">students</Link>
                 <nav className="nav nav-pills flex-column">
-                    <Link className="nav-link text-white-color ms-3 my-1" to="#item-3-1">Item 3-1</Link>
-                    <Link className="nav-link text-white-color ms-3 my-1" to="#item-3-2">Item 3-2</Link>
+                    <Link className="nav-link text-white-color ms-3 my-1" to="/students">accepted students</Link>
+                    <Link className="nav-link text-white-color ms-3 my-1" to="/non-accepted/students">non accepted students</Link>
                 </nav>
             </nav>
         </nav>
