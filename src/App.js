@@ -27,7 +27,7 @@ function App() {
               <Route path="grades/*">
                 <Route index element={<Grades />} />
                 <Route path="create" element={<CreateGrade />} />
-                <Route path=":id" element={<Grade />} />
+                {/* <Route path=":id" element={<Grade />} /> */}
                 <Route path=":id/edit" element={<EditGrade />} />
               </Route>
               <Route path="courses/*">

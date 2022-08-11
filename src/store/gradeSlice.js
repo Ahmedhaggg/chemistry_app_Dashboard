@@ -41,15 +41,15 @@ export const gradeSlice = createApi({
             }
         }),
         updateGrade: builder.mutation({
-            query: (gradeId, newGradeData) => {
+            query: (data) => {
                 return ({
                     method: "PUT",
-                    url: `grades/${gradeId}`,
+                    url: `grades/${data.gradeId}`,
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': getToken()
                     },
-                    body: JSON.stringify(newGradeData)
+                    body: JSON.stringify(data.newGradeData)
                 })
             }
         })
