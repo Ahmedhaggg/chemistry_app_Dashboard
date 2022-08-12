@@ -71,7 +71,13 @@ export default function EditCourse() {
                                                             <p className="alert alert-danger">{updateGradeResult.error.data.error.errors.currentCourse}</p> : null
                                                     }
 
+
                                                     <div className="text-center">
+                                                        {
+                                                            updateGradeResult.error?.data?.error?.errorName === "updateError" ?
+                                                                <p className="alert alert-danger">{updateGradeResult.error.data.error.message}</p>
+                                                                : null
+                                                        }
                                                         {
                                                             updateGradeResult.data ?
                                                                 <p className="alert alert-success">{updateGradeResult.data.message}</p>

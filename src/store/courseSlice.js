@@ -41,7 +41,7 @@ export const courseSelice = createApi({
             }
         }),
         updateCourse: builder.mutation({
-            query: (courseId, newCourseData) => {
+            query: ({ courseId, newCourseData }) => {
                 return ({
                     url: `courses/${courseId}`,
                     method: "PUT",
