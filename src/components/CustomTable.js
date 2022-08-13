@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CustomTable({ data, linkItems, redirectPath }) {
+export default function CustomTable({ data, linkItems, redirectPath, bgColor }) {
     return (
         <table className="table bg-white">
-            <thead className="bg-second-color text-light">
+            <thead className={`${bgColor || "bg-second-color"} text-light`}>
                 <tr className="text-center">
                     {
                         Object.keys(data[0]).map(key => key !== "_id" ? <th>{key}</th> : null)

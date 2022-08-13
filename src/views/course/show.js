@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import PageLoading from "../../components/PageLoading";
 import SectionHeader from "../../components/SectionHeader";
 import { useGetCourseQuery } from "../../store/courseSlice";
@@ -23,13 +23,14 @@ export default function Course() {
                         <Box text="revisions" number={data.course.numberOfRevisions} bgColor="bg-success" />
                     </div>
                     <div>
-                        <p className="text-second-color fs-3 mt-3">units</p>
+                        <p className="text-main-color fs-3 mt-3">units</p>
                         {
                             data.course.units.length === 0 ?
                                 <p className="alert alert-info w-50 mx-auto">no match units</p>
                                 :
-                                <CustomTable redirectPath="/units/" data={data.course.units} linkItems={["name"]} />
+                                <CustomTable redirectPath={"/courses/" + id + "/units/"} data={data.course.units} linkItems={["name"]} bgColor="bg-main-color" />
                         }
+                        <Link to={"/courses/" + id + "/units/create"} className="btn bg-main-color text-white">add new unit to course</Link>
                     </div>
                     <div>
                         <p className="text-second-color fs-3 mt-3">revisions</p>
@@ -37,11 +38,10 @@ export default function Course() {
                             data.course.revisions.length === 0 ?
                                 <p className="alert alert-info">no match revisions</p>
                                 :
-                                <CustomTable redirectPath="/revisions/" data={data.course.revisions} linkItems={["name"]} />
+                                <CustomTable redirectPath={"/courses/" + id + "/revisions/"} data={data.course.revisions} linkItems={["name"]} bgColor="bg-second-color" />
                         }
+                        <Link to={"/courses/" + id + "/revisions/create"} className="btn btn-primary">add new revision to course</Link>
                     </div>
                 </div>
-
-
     );
 }

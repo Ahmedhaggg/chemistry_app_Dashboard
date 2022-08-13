@@ -17,7 +17,7 @@ export const unitSlice = createApi({
             }
         }),
         getUnit: builder.query({
-            query: (courseId, unitId) => {
+            query: ({ courseId, unitId }) => {
                 return {
                     url: `${courseId}/units/${unitId}`,
                     method: "GET",
@@ -28,7 +28,7 @@ export const unitSlice = createApi({
             }
         }),
         createUnit: builder.mutation({
-            query: (courseId, newUnitData) => {
+            query: ({ courseId, newUnitData }) => {
                 return ({
                     url: `${courseId}/units`,
                     method: "POST",
@@ -41,7 +41,7 @@ export const unitSlice = createApi({
             }
         }),
         updateUnit: builder.mutation({
-            query: (courseId, unitId, newUnitData) => {
+            query: ({ courseId, unitId, newUnitData }) => {
                 return ({
                     method: "PUT",
                     url: `${courseId}/units/${unitId}`,
@@ -52,8 +52,19 @@ export const unitSlice = createApi({
                     body: JSON.stringify(newUnitData)
                 })
             }
+        }),
+        getNextUnitArrangement: builder.query({
+            query: (id) => {
+                return {
+                    url: `${id}/units/next-arrangement`,
+                    method: "GET",
+                    headers: {
+                        'authorization': getToken()
+                    }
+                }
+            }
         })
     })
 });
 
-export const { useGetCourseUnitsQuery, useGetUnitQuery, useCreateUnitMutation, useUpdateUnitMutation } = unitSlice;
+export const { useGetCourseUnitsQuery, useGetUnitQuery, useCreateUnitMutation, useUpdateUnitMutation, useGetNextUnitArrangementQuery } = unitSlice;
