@@ -6,7 +6,7 @@ import { useGetAllCoursesQuery } from "../../store/courseSlice"
 
 export default function Courses() {
 
-    const { data, isLoading, isSuccess } = useGetAllCoursesQuery();
+    const { data, isLoading, isSuccess } = useGetAllCoursesQuery(null, { refetchOnMountOrArgChange: true });
     useEffect(() => { console.log(data) }, [data])
     return <>
         {

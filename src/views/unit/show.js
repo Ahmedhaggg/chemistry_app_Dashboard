@@ -8,7 +8,7 @@ import CustomTable from "../../components/CustomTable";
 
 export default function Unit() {
     let { courseId, unitId } = useParams();
-    let { data, isLoading, isSuccess } = useGetUnitQuery({ courseId, unitId });
+    let { data, isLoading, isSuccess } = useGetUnitQuery({ courseId, unitId }, { refetchOnMountOrArgChange: true });
 
 
     return (

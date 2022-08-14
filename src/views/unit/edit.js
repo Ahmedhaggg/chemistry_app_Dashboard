@@ -10,7 +10,9 @@ export default function EditUnit() {
     let getUnit = useGetUnitQuery({ courseId, unitId });
     let [redirect, setRedirect] = useState(false);
     let [UpdateUnit, UpdateUnitResult] = useUpdateUnitMutation();
-    useEffect(() => console.log(UpdateUnitResult), [UpdateUnitResult])
+
+    useEffect(() => console.log(UpdateUnitResult), [UpdateUnitResult]);
+
     const {
         register,
         handleSubmit,
@@ -64,7 +66,7 @@ export default function EditUnit() {
                                                 <p className="alert alert-success">{UpdateUnitResult.data.message}</p>
                                                 : null
                                         }
-                                        <button type="submit" className="btn btn-primary btn-lg">create course</button>
+                                        <button type="submit" className="btn btn-primary btn-lg">update course</button>
                                     </div>
                                 </form>
                             </div>

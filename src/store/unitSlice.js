@@ -4,6 +4,7 @@ import { getToken } from "../services/storage";
 export const unitSlice = createApi({
     reducerPath: "unitSlice",
     baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/courses/` }),
+    tagTypes: ["Unit"],
     endpoints: (builder) => ({
         getCourseUnits: builder.query({
             query: (courseId) => {
@@ -14,7 +15,7 @@ export const unitSlice = createApi({
                         'authorization': getToken()
                     }
                 }
-            }
+            },
         }),
         getUnit: builder.query({
             query: ({ courseId, unitId }) => {
@@ -25,7 +26,8 @@ export const unitSlice = createApi({
                         'authorization': getToken()
                     }
                 }
-            }
+            },
+            providesTags: ["Unit"]
         }),
         createUnit: builder.mutation({
             query: ({ courseId, newUnitData }) => {
@@ -51,7 +53,8 @@ export const unitSlice = createApi({
                     },
                     body: JSON.stringify(newUnitData)
                 })
-            }
+            },
+            invalidatesTags: ["Unit"]
         }),
         getNextUnitArrangement: builder.query({
             query: (id) => {

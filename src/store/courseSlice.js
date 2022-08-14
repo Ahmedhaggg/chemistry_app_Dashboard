@@ -4,6 +4,7 @@ import { getToken } from "../services/storage";
 export const courseSelice = createApi({
     reducerPath: "courseSlice",
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
+    tagTypes: ["Course"],
     endpoints: (builder) => ({
         getAllCourses: builder.query({
             query: () => {
@@ -25,7 +26,8 @@ export const courseSelice = createApi({
                         'authorization': getToken()
                     }
                 }
-            }
+            },
+            providesTags: ["Course"]
         }),
         createCourse: builder.mutation({
             query: newCourseData => {
