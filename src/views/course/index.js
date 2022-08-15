@@ -6,8 +6,8 @@ import { useGetAllCoursesQuery } from "../../store/courseSlice"
 
 export default function Courses() {
 
-    const { data, isLoading, isSuccess } = useGetAllCoursesQuery(null, { refetchOnMountOrArgChange: true });
-    useEffect(() => { console.log(data) }, [data])
+    const { data, isLoading, isSuccess } = useGetAllCoursesQuery();
+
     return <>
         {
             isLoading ? <PageLoading /> : <>

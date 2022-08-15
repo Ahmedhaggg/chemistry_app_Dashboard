@@ -8,9 +8,9 @@ import { useGetCourseQuery, useUpdateCourseMutation } from "../../store/courseSl
 export default function EditCourse() {
     let { id } = useParams()
     let [redirect, setRedirect] = useState(false);
-    let { data, isSuccess, isLoading } = useGetCourseQuery(id, { refetchOnMountOrArgChange: true });
+    let { data, isSuccess, isLoading } = useGetCourseQuery(id);
     let [updateCourse, updateCourseResult] = useUpdateCourseMutation();
-    useEffect(() => console.log("data", data, id, isLoading, isSuccess), [data])
+
     const {
         register,
         handleSubmit,

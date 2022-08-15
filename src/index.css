@@ -74,6 +74,11 @@ code {
   height: 200px;
 }
 
+/* video */
+.video {
+  height: 300px;
+  width: 100%;
+}
 
 /* end components */
 

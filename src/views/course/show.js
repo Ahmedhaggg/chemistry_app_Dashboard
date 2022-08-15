@@ -9,7 +9,7 @@ import CustomTable from "../../components/CustomTable";
 
 export default function Course() {
     let { id } = useParams();
-    let { data, isSuccess, isLoading } = useGetCourseQuery(id, { refetchOnMountOrArgChange: true });
+    let { data, isSuccess, isLoading } = useGetCourseQuery(id);
     useEffect(() => console.log(data), [data])
     return (
         isLoading ? <PageLoading /> :

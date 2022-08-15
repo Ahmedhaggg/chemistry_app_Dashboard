@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
-import { useCreateGradeMutation, useGetGradeQuery, useUpdateGradeMutation } from "../../store/gradeSlice";
+import { useGetGradeQuery, useUpdateGradeMutation } from "../../store/gradeSlice";
 import { useGetAllCoursesQuery } from "../../store/courseSlice"
 import PageLoading from "../../components/PageLoading";
 
@@ -31,7 +31,7 @@ export default function EditCourse() {
         return () => clearTimeout(timeout);
 
     }, [updateGradeResult]);
-    useEffect(() => console.log(updateGradeResult), [updateGradeResult])
+
     return (
         <>
             {redirect && <Navigate to="/grades" />}

@@ -1,26 +1,13 @@
+import { apiSlice } from "./apiSlice";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { getToken } from "../services/storage";
 
-export const unitSlice = createApi({
-    reducerPath: "unitSlice",
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/courses/` }),
-    tagTypes: ["Unit"],
+export const unitSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getCourseUnits: builder.query({
             query: (courseId) => {
                 return {
-                    url: `${courseId}/units`,
-                    method: "GET",
-                    headers: {
-                        'authorization': getToken()
-                    }
-                }
-            },
-        }),
-        getUnit: builder.query({
-            query: ({ courseId, unitId }) => {
-                return {
-                    url: `${courseId}/units/${unitId}`,
+                    url: `courses/${courseId}/units`,
                     method: "GET",
                     headers: {
                         'authorization': getToken()
@@ -29,10 +16,22 @@ export const unitSlice = createApi({
             },
             providesTags: ["Unit"]
         }),
+        getUnit: builder.query({
+            query: ({ courseId, unitId }) => {
+                return {
+                    url: `courses/${courseId}/units/${unitId}`,
+                    method: "GET",
+                    headers: {
+                        'authorization': getToken()
+                    }
+                }
+            },
+            providesTags: ["Unit", "Lesson"]
+        }),
         createUnit: builder.mutation({
             query: ({ courseId, newUnitData }) => {
                 return ({
-                    url: `${courseId}/units`,
+                    url: `courses/${courseId}/units`,
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
@@ -40,13 +39,14 @@ export const unitSlice = createApi({
                     },
                     body: JSON.stringify(newUnitData)
                 })
-            }
+            },
+            invalidatesTags: ["Unit", "Course"]
         }),
         updateUnit: builder.mutation({
             query: ({ courseId, unitId, newUnitData }) => {
                 return ({
                     method: "PUT",
-                    url: `${courseId}/units/${unitId}`,
+                    url: `courses/${courseId}/units/${unitId}`,
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': getToken()
@@ -54,12 +54,12 @@ export const unitSlice = createApi({
                     body: JSON.stringify(newUnitData)
                 })
             },
-            invalidatesTags: ["Unit"]
+            invalidatesTags: ["Unit", "Course"]
         }),
         getNextUnitArrangement: builder.query({
             query: (id) => {
                 return {
-                    url: `${id}/units/next-arrangement`,
+                    url: `courses/${id}/units/next-arrangement`,
                     method: "GET",
                     headers: {
                         'authorization': getToken()

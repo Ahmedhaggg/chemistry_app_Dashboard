@@ -1,10 +1,8 @@
+import { apiSlice } from "./apiSlice"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { getToken } from "../services/storage";
 
-export const courseSelice = createApi({
-    reducerPath: "courseSlice",
-    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
-    tagTypes: ["Course"],
+export const courseSelice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllCourses: builder.query({
             query: () => {
@@ -15,7 +13,8 @@ export const courseSelice = createApi({
                         'authorization': getToken()
                     }
                 }
-            }
+            },
+            providesTags: ["Course"]
         }),
         getCourse: builder.query({
             query: (id) => {
@@ -40,7 +39,8 @@ export const courseSelice = createApi({
                     },
                     body: JSON.stringify(newCourseData)
                 })
-            }
+            },
+            invalidatesTags: ["Course"]
         }),
         updateCourse: builder.mutation({
             query: ({ courseId, newCourseData }) => {
@@ -53,7 +53,8 @@ export const courseSelice = createApi({
                     },
                     body: JSON.stringify(newCourseData)
                 })
-            }
+            },
+            invalidatesTags: ["Course"]
         })
     })
 });
