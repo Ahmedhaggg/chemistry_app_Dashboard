@@ -17,19 +17,18 @@ import CreateUnit from "./views/unit/create";
 import Unit from "./views/unit/show";
 import EditUnit from "./views/unit/edit";
 import Lesson from "./views/lesson/show";
-// import CreateStudent from "./views/lesson/create";
 import CreateLesson from "./views/lesson/create";
 import EditLesson from "./views/lesson/edit";
+import UnitRevision from "./views/unitRevision/show";
+import EditUnitRevision from "./views/unitRevision/edit";
+import CreateUnitRevision from "./views/unitRevision/create";
+
 
 function App() {
   return (
     <div className="App">
       <Provider store={Store}>
         <BrowserRouter>
-          {/* <Routes>
-            <Route path="/" element={<Lesson />} />
-            <Route path="/create" element={<CreateStudent />} />
-          </Routes> */}
           <Routes>
             <Route path="/login" exact element={<Login />} />
             <Route path="/*" element={<Layout />}>
@@ -52,6 +51,11 @@ function App() {
                     <Route path="create" element={< CreateLesson />} />
                     <Route path=":lessonId" element={< Lesson />} />
                     <Route path=":lessonId/edit" element={< EditLesson />} />
+                  </Route>
+                  <Route path=":unitId/revisions/">
+                    <Route path="create" element={<CreateUnitRevision />} />
+                    <Route path=":revisionId" element={<UnitRevision />} />
+                    <Route path=":revisionId/edit" element={<EditUnitRevision />} />
                   </Route>
                   <Route path="*" element={<div>404</div>} />
                 </Route>

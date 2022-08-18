@@ -43,7 +43,7 @@ export default function Unit() {
                                     :
                                     <CustomTable redirectPath={"/courses/" + courseId + "/units/" + unitId + "/revisions/"} data={data.unit.revisions} linkItems={["name"]} />
                             }
-                            <Link to={"/courses/" + courseId + "/units/" + unitId + "/revision/create"} className="btn bg-main-color text-white">add new revision to unit</Link>
+                            <Link to={"/courses/" + courseId + "/units/" + unitId + "/revisions/create"} className="btn bg-main-color text-white">add new revision to unit</Link>
                         </div>
                     </div>
 

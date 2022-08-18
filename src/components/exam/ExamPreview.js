@@ -12,8 +12,8 @@ export default function ExamPreview({ exam }) {
             </div>
             <div className="bg-second-color text-white d-flex align-items-center justify-content-center ms-3" style={{ height: "140px", width: "140px" }}>
                 <div className="text-center">
-                    <span className="d-block fs-5">exams</span>
-                    <span className="d-block fs-4">{exam.questions.length}</span>
+                    <span className="d-block fs-5">degree</span>
+                    <span className="d-block fs-4">{exam.degree}</span>
                 </div>
             </div>
         </div>
