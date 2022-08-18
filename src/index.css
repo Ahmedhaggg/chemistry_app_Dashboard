@@ -56,12 +56,9 @@ code {
   color: var(--blackColor);
 }
 
-/* dashboard */
-.dashboard-section {
-  padding-top: 70px;
-  text-align: center;
-}
+/* start components */
 
+/* dashboard item */
 .dashboard-item {
   height: 200px;
   transition: 0.4s;
@@ -70,6 +67,25 @@ code {
 .dashboard-item:hover {
   cursor: pointer;
   box-shadow: 1px 1px 6px -1px #888888;
+}
+
+/* Box */
+.box {
+  height: 200px;
+}
+
+/* video */
+.video {
+  height: 300px;
+  width: 100%;
+}
+
+/* end components */
+
+/* dashboard */
+.dashboard-section {
+  padding-top: 70px;
+  text-align: center;
 }
 
 /* start sidebar */

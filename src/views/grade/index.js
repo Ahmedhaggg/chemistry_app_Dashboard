@@ -6,7 +6,7 @@ import { useGetAllGradesQuery } from "../../store/gradeSlice"
 export default function Grades() {
 
     const { data, isLoading, isSuccess } = useGetAllGradesQuery();
-    useEffect(() => console.log(data), [data])
+
     return <>
         {
             isLoading ? <PageLoading /> : <>
@@ -24,12 +24,18 @@ export default function Grades() {
                             </thead>
                             <tbody>
                                 {data.grades.map(grade => (
-                                    <tr className="text-center">
-                                        <td data-title="grade" className="fs-6">{grade.name}</td>
-                                        <td data-title="Last Name">{grade.currentCourse.name}</td>
-                                        <td data-title="Last Name">{grade.numberOfStudents}</td>
+                                    <tr className="text-center" key={grade._id}>
+                                        <td data-title="grade" className="fs-6">
+                                            <Link className="text-black-color text-decoration-none" to={"/grades/" + grade._id}>{grade.name}</Link>
+                                        </td>
                                         <td data-title="Last Name">
-                                            <Link to={"/grades/" + grade._id} className="text-decoration-none">
+                                            <Link className="text-black-color text-decoration-none" to={"/courses/" + grade.currentCourse._id}>{grade.currentCourse.name}</Link>
+                                        </td>
+                                        <td data-title="Last Name">
+                                            {grade.numberOfStudents || 0}
+                                        </td>
+                                        <td data-title="Last Name">
+                                            <Link to={"/grades/" + grade._id + "/edit"} className="text-decoration-none">
                                                 update
                                             </Link>
                                         </td>
@@ -37,6 +43,7 @@ export default function Grades() {
                                 ))}
                             </tbody>
                         </table>
+                        <Link className="btn btn-primary" to="/grades/create">go to add new Grade</Link>
                     </div>
                     : <Navigate to="505" />
                 }
