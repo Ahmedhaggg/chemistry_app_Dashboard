@@ -1,14 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { getToken } from "../services/storage";
-
-export const unitRevisionSlice = createApi({
-    reducerPath: "unitRevisionSlice",
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/units/` }),
+import { apiSlice } from "./apiSlice";
+export const unitRevisionSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getUnitRevisions: builder.query({
             query: (unitId) => {
                 return {
-                    url: `${unitId}/revisions`,
+                    url: `units/${unitId}/revisions`,
                     method: "GET",
                     headers: {
                         'authorization': getToken()
@@ -17,43 +14,58 @@ export const unitRevisionSlice = createApi({
             }
         }),
         getUnitRevision: builder.query({
-            query: (unitId, revisionId) => {
+            query: ({ unitId, revisionId }) => {
                 return {
-                    url: `${unitId}/revisions/${revisionId}`,
+                    url: `units/${unitId}/revisions/${revisionId}`,
                     method: "GET",
                     headers: {
                         'authorization': getToken()
                     }
                 }
-            }
+            },
+            providesTags: ["UnitRevision"]
+        }),
+        getNextUnitRevisionArrangement: builder.query({
+            query: (unitId) => {
+                return ({
+                    method: "GET",
+                    url: `units/${unitId}/revisions/next-arrangement`,
+                    headers: {
+                        'authorization': getToken()
+                    }
+                })
+            },
+            providesTags: ["UnitRevision"]
         }),
         createUnitRevision: builder.mutation({
-            query: (unitId, newRevisionId) => {
+            query: ({ unitId, newUnitRevisionData }) => {
                 return ({
-                    url: `${unitId}/revisions`,
+                    url: `units/${unitId}/revisions`,
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': getToken()
                     },
-                    body: JSON.stringify(newRevisionId)
+                    body: JSON.stringify(newUnitRevisionData)
                 })
-            }
+            },
+            invalidatesTags: ["UnitRevision", "Unit"]
         }),
         updateUnitRevision: builder.mutation({
-            query: (unitId, revisionId, newRevisionData) => {
+            query: ({ unitId, revisionId, newRevisionData }) => {
                 return ({
                     method: "PUT",
-                    url: `${unitId}/revisions/${revisionId}`,
+                    url: `units/${unitId}/revisions/${revisionId}`,
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': getToken()
                     },
                     body: JSON.stringify(newRevisionData)
                 })
-            }
+            },
+            invalidatesTags: ["UnitRevision", "Unit"]
         })
     })
 });
 
-export const { useGetCourseUnitsQuery, useGetUnitQuery, useCreateUnitMutation, useUpdateUnitMutation } = unitRevisionSlice;
+export const { useGetUnitRevisionQuery, useGetUnitRevisionsQuery, useCreateUnitRevisionMutation, useUpdateUnitRevisionMutation, useGetNextUnitRevisionArrangementQuery } = unitRevisionSlice;

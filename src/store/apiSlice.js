@@ -4,7 +4,7 @@ import { getToken } from "../services/storage";
 export const apiSlice = createApi({
     reducerPath: "apiSlice",
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
-    tagTypes: ["Api", "Student", "Course", "Grade", "Revision", "Unit", "Lesson"],
+    tagTypes: ["Api", "Student", "Course", "Grade", "UnitRevision", "CourseRevision", "Unit", "Lesson"],
     endpoints: (builder) => ({
         // getAllApi: builder.query({
         //     query: () => {
