@@ -1,14 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { getToken } from "../services/storage";
-
-export const courseRevisionSlice = createApi({
-    reducerPath: "courseRevisionSlice",
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.REACT_APP_API_URL}/courses/` }),
+import { apiSlice } from "./apiSlice";
+export const courseRevisionSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getCourseRevisions: builder.query({
             query: (courseId) => {
                 return {
-                    url: `${courseId}/revisions`,
+                    url: `courses/${courseId}/revisions`,
                     method: "GET",
                     headers: {
                         'authorization': getToken()
@@ -17,43 +14,58 @@ export const courseRevisionSlice = createApi({
             }
         }),
         getCourseRevision: builder.query({
-            query: (courseId, revisionId) => {
+            query: ({ courseId, revisionId }) => {
                 return {
-                    url: `${courseId}/revisions/${revisionId}`,
+                    url: `courses/${courseId}/revisions/${revisionId}`,
                     method: "GET",
                     headers: {
                         'authorization': getToken()
                     }
                 }
-            }
+            },
+            providesTags: ["CourseRevision"]
+        }),
+        getNextCourseRevisionArrangement: builder.query({
+            query: (courseId) => {
+                return ({
+                    method: "GET",
+                    url: `courses/${courseId}/revisions/next-arrangement`,
+                    headers: {
+                        'authorization': getToken()
+                    }
+                })
+            },
+            providesTags: ["CourseRevision"]
         }),
         createCourseRevision: builder.mutation({
-            query: (courseId, newRevisionId) => {
+            query: ({ courseId, newCourseRevisionData }) => {
                 return ({
-                    url: `${courseId}/revisions`,
+                    url: `courses/${courseId}/revisions`,
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': getToken()
                     },
-                    body: JSON.stringify(newRevisionId)
+                    body: JSON.stringify(newCourseRevisionData)
                 })
-            }
+            },
+            invalidatesTags: ["CourseRevision", "Course"]
         }),
         updateCourseRevision: builder.mutation({
-            query: (courseId, revisionId, newRevisionData) => {
+            query: ({ courseId, revisionId, newRevisionData }) => {
                 return ({
                     method: "PUT",
-                    url: `${courseId}/revisions/${revisionId}`,
+                    url: `courses/${courseId}/revisions/${revisionId}`,
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': getToken()
                     },
                     body: JSON.stringify(newRevisionData)
                 })
-            }
+            },
+            invalidatesTags: ["CourseRevision", "Course"]
         })
     })
 });
 
-export const { useGetCourseCoursesQuery, useGetCourseQuery, useCreateCourseMutation, useUpdateCourseMutation } = courseRevisionSlice;
+export const { useGetCourseRevisionQuery, useGetCourseRevisionsQuery, useCreateCourseRevisionMutation, useUpdateCourseRevisionMutation, useGetNextCourseRevisionArrangementQuery } = courseRevisionSlice;
