@@ -22,6 +22,9 @@ import EditLesson from "./views/lesson/edit";
 import UnitRevision from "./views/unitRevision/show";
 import EditUnitRevision from "./views/unitRevision/edit";
 import CreateUnitRevision from "./views/unitRevision/create";
+import CreateCourseRevision from "./views/courseRevision/create";
+import CourseRevision from "./views/courseRevision/show";
+import EditCourseRevision from "./views/courseRevision/edit";
 
 
 function App() {
@@ -58,6 +61,11 @@ function App() {
                     <Route path=":revisionId/edit" element={<EditUnitRevision />} />
                   </Route>
                   <Route path="*" element={<div>404</div>} />
+                </Route>
+                <Route path=":courseId/revisions/*">
+                  <Route path="create" element={< CreateCourseRevision />} />
+                  <Route path=":revisionId" element={< CourseRevision />} />
+                  <Route path=":revisionId/edit" element={< EditCourseRevision />} />
                 </Route>
                 <Route path="*" element={<div>404</div>} />
               </Route>
