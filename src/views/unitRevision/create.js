@@ -101,7 +101,7 @@ export default function CreateUnitRevision() {
                                                 <p className="alert alert-success">{createUnitRevisionResult.data.message}</p>
                                                 : null
                                         }
-                                        <button type="submit" className="btn btn-primary btn-lg">create lesson</button>
+                                        <button type="submit" className="btn btn-primary btn-lg">create revision</button>
                                     </div>
                                 </form>
                             </div>

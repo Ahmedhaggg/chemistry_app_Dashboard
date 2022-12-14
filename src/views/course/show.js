@@ -17,7 +17,7 @@ export default function Course() {
                 <Navigate to="/505" />
                 :
                 <div className="dashboard-section">
-                    <SectionHeader text="course" />
+                    <SectionHeader text={"Course " + data.course.name} />
                     <div className="row justify-content-center">
                         <Box text="units" number={data.course.numberOfUnits} bgColor="bg-second-color" />
                         <Box text="revisions" number={data.course.numberOfRevisions} bgColor="bg-success" />

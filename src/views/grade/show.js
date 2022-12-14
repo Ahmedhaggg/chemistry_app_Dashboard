@@ -8,7 +8,7 @@ import { useGetGradeQuery } from "../../store/gradeSlice";
 export default function Grade() {
     let { id } = useParams();
     let { data, isLoading, isSuccess } = useGetGradeQuery(id);
-    useEffect(() => console.log(data), [data])
+    useEffect(() => console.log("dddddd", data), [data])
     return <>
         {
             isLoading ? <PageLoading /> : <>

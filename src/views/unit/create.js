@@ -62,7 +62,7 @@ export default function CreateUnit() {
                                                 <p className="alert alert-success">{createUnitResult.data.message}</p>
                                                 : null
                                         }
-                                        <button type="submit" className="btn btn-primary btn-lg">create course</button>
+                                        <button type="submit" className="btn btn-primary btn-lg">create unit</button>
                                     </div>
                                 </form>
                             </div>

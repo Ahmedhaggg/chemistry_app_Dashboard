@@ -12,7 +12,7 @@ export default function Grades() {
             isLoading ? <PageLoading /> : <>
                 {isSuccess ?
                     <div className="dashboard-section">
-                        <SectionHeader text="Dashboard" />
+                        <SectionHeader text="grades" />
                         <table className="table bg-white">
                             <thead className="bg-second-color text-light">
                                 <tr className="text-center">
