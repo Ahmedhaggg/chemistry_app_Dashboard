@@ -11,7 +11,7 @@ import { apiSlice } from "./apiSlice";
 const Store = configureStore({
 
     reducer: {
-        // auth: authReducer,
+        auth: authReducer,
         // [courseSelice.reducerPath]: courseSelice.reducer,
         // [gradeSlice.reducerPath]: gradeSlice.reducer,
         // [unitSlice.reducerPath]: unitSlice.reducer,

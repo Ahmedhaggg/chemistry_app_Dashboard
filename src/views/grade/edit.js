@@ -83,7 +83,7 @@ export default function EditCourse() {
                                                                 <p className="alert alert-success">{updateGradeResult.data.message}</p>
                                                                 : null
                                                         }
-                                                        <button type="submit" className="btn btn-primary btn-lg">create grade</button>
+                                                        <button type="submit" className="btn btn-primary btn-lg">update grade</button>
                                                     </div>
                                                 </form>
                                             </div>

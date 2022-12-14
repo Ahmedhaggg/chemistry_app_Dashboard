@@ -3,10 +3,11 @@ import StudentQueryParmsBuilder from '../services/stdentQueryParams'
 import { getToken } from '../services/storage'
 import { apiSlice } from './apiSlice'
 
-export const studentSlice = apiSlice.injectEndpoints({
+export const applyingStudentSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        getStudents: builder.query({
+        getApplyingStudents: builder.query({
             query: (query = {}) => {
+                console.log(query)
                 let newQuery = new StudentQueryParmsBuilder();
 
                 if (query.offset) newQuery.setOffset(query.offset)
@@ -15,7 +16,7 @@ export const studentSlice = apiSlice.injectEndpoints({
 
                 return ({
                     method: "GET",
-                    url: `students${newQuery.get()}`,
+                    url: `students/un-accepted${newQuery.get()}`,
                     headers: {
                         'authorization': getToken()
                     },
@@ -23,7 +24,7 @@ export const studentSlice = apiSlice.injectEndpoints({
             },
             providesTags: ["Student"]
         }),
-        countStudents: builder.query({
+        countApplyingStudents: builder.query({
             query: (query = {}) => {
                 let newQuery = new StudentQueryParmsBuilder();
 
@@ -31,18 +32,18 @@ export const studentSlice = apiSlice.injectEndpoints({
 
                 return ({
                     method: "GET",
-                    url: `students/count${newQuery.get()}`,
+                    url: `students/un-accepted/count${newQuery.get()}`,
                     headers: {
                         'authorization': getToken()
                     }
                 })
             }
         }),
-        getStudent: builder.query({
+        getApplyingStudent: builder.query({
             query: (studentId) => {
                 return ({
                     method: "GET",
-                    url: `students/${studentId}`,
+                    url: `students/${studentId}/un-accepted`,
                     headers: {
                         'authorization': getToken()
                     },
@@ -50,6 +51,24 @@ export const studentSlice = apiSlice.injectEndpoints({
             },
             providesTags: ["Student"]
         }),
+        createApplyingStudent: builder.mutation({
+            query: ({ studentId, acceptingStudentData}) => {
+                return ({
+                    method: "PUT", 
+                    url: `students/${studentId}/un-accepted`,
+                    headers: {
+                        'authorization': getToken()
+                    },
+                    body: JSON.stringify(acceptingStudentData)
+                })
+            }, 
+            invalidatesTags: ["Student"]
+        })
     })
 })
-export const { useGetStudentQuery, useGetStudentsQuery, useCountStudentsQuery } = studentSlice
+export const { 
+    useGetApplyingStudentQuery, 
+    useGetApplyingStudentsQuery, 
+    useCountApplyingStudentsQuery,
+    useCreateApplyingStudentMutation
+} = applyingStudentSlice;
