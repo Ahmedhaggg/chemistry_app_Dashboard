@@ -17,15 +17,15 @@ export default function Unit() {
                 : (
                     <div className="dashboard-section">
                         <SectionHeader text={data.unit.name} />
-                        <div className="row justify-content-center">
+                        {/* <div className="row justify-content-center">
                             <Box text="units" number={data.unit.numberOfLessons} bgColor="bg-second-color" />
                             <Box text="revisions" number={data.unit.numberOfRevisions} bgColor="bg-success" />
-                        </div>
+                        </div> */}
                         <div>
                             <p className="text-second-color fs-3 mt-3">lessons</p>
                             {
                                 data.unit.lessons.length === 0 ?
-                                    <p className="alert alert-info w-50 mx-auto">no match lessons</p>
+                                    <p className="alert alert-info w-100 mx-auto">no match lessons</p>
                                     :
                                     <CustomTable
                                         redirectPath={"/courses/" + courseId + "/units/" + unitId + "/lessons/"}
@@ -33,13 +33,13 @@ export default function Unit() {
                                         linkItems={["name"]}
                                     />
                             }
-                            <Link to={"/courses/" + courseId + "/units/" + unitId + "/lessons/create"} className="btn bg-main-color text-white">add new lesson to unit</Link>
+                            <Link to={"/courses/" + courseId + "/units/" + unitId + "/lessons/create"} className="btn bg-second-color text-white">add new lesson to unit</Link>
                         </div>
                         <div>
-                            <p className="text-second-color fs-3 mt-3">revisions</p>
+                            <p className="text-main-color fs-3 mt-3">revisions</p>
                             {
                                 data.unit.revisions.length === 0 ?
-                                    <p className="alert alert-info w-50 mx-auto">no match revisions</p>
+                                    <p className="alert alert-info w-100 mx-auto">no match revisions</p>
                                     :
                                     <CustomTable redirectPath={"/courses/" + courseId + "/units/" + unitId + "/revisions/"} data={data.unit.revisions} linkItems={["name"]} />
                             }

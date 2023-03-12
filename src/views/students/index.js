@@ -73,7 +73,7 @@ export default function Students() {
                     </table>
                     {
                             data.students.length === 0 ? 
-                                <p className="alert alert-danger pt-3 w-100">no students in this grade</p>
+                                <p className="alert alert-info pt-3 w-100">no students in this grade</p>
                             : null
                     }
                     <Pagination numberOfPages={totalOfPages} 

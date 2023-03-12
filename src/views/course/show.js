@@ -18,10 +18,10 @@ export default function Course() {
                 :
                 <div className="dashboard-section">
                     <SectionHeader text={"Course " + data.course.name} />
-                    <div className="row justify-content-center">
+                    {/*<div className="row justify-content-center">
                         <Box text="units" number={data.course.numberOfUnits} bgColor="bg-second-color" />
                         <Box text="revisions" number={data.course.numberOfRevisions} bgColor="bg-success" />
-                    </div>
+    </div>*/}
                     <div>
                         <p className="text-main-color fs-3 mt-3">units</p>
                         {

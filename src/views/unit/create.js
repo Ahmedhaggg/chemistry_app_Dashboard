@@ -3,11 +3,10 @@ import { useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
 import PageLoading from "../../components/PageLoading";
 import SectionHeader from "../../components/SectionHeader";
-import { useGetNextUnitArrangementQuery, useCreateUnitMutation } from "../../store/unitSlice";
+import {  useCreateUnitMutation } from "../../store/unitSlice";
 
 export default function CreateUnit() {
     let { courseId } = useParams();
-    let getNextUnitArrangement = useGetNextUnitArrangementQuery(courseId);
     let [redirect, setRedirect] = useState(false);
     let [createUnit, createUnitResult] = useCreateUnitMutation();
 
@@ -20,10 +19,7 @@ export default function CreateUnit() {
     let submitHandler = (newUnitData) => {
         createUnit({
             courseId,
-            newUnitData: {
-                arrangement: getNextUnitArrangement.data.nextUnitArrangement,
-                ...newUnitData
-            }
+            newUnitData
         })
     }
 
@@ -37,9 +33,6 @@ export default function CreateUnit() {
     }, [createUnitResult]);
 
     return (
-        getNextUnitArrangement.isLoading ? <PageLoading />
-            : !getNextUnitArrangement.isSuccess ? <Navigate to="/505" />
-                :
                 <>
                     <div className="dashboard-section">
                         <SectionHeader text="addUnit to course " />

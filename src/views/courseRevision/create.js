@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate, useParams } from "react-router-dom";
-import { useCreateCourseRevisionMutation, useGetNextCourseRevisionArrangementQuery } from "../../store/courseRevisionSlice";
-import PageLoading from "../../components/PageLoading";
+import { useCreateCourseRevisionMutation } from "../../store/courseRevisionSlice";
 import SectionHeader from "../../components/SectionHeader";
 import Questions from "../../components/exam/Questions";
 
 export default function CreateCourseRevision() {
     let [redirect, setRedirect] = useState(false);
     let { courseId } = useParams();
-    let getNextCourseRevisionArrangement = useGetNextCourseRevisionArrangementQuery(courseId);
     let [createCourseRevision, createCourseRevisionResult] = useCreateCourseRevisionMutation();
     let { register, handleSubmit, control, formState: { errors } } = useForm();
 
     useEffect(() => {
-        console.log(createCourseRevisionResult, getNextCourseRevisionArrangement)
         let timeout;
         if (createCourseRevisionResult.isSuccess) {
             timeout = setTimeout(() => { setRedirect(true) }, 2000);
@@ -27,7 +24,6 @@ export default function CreateCourseRevision() {
         createCourseRevision({
             courseId,
             newCourseRevisionData: {
-                arrangement: getNextCourseRevisionArrangement.data.nextRevisionArrangement,
                 name: newCourseRevisionData.name,
                 description: newCourseRevisionData.description,
                 video: newCourseRevisionData.video,
@@ -40,9 +36,6 @@ export default function CreateCourseRevision() {
     }
 
     return (
-        getNextCourseRevisionArrangement.isLoading ? <PageLoading />
-            : !getNextCourseRevisionArrangement.isSuccess ? <Navigate to="/505" />
-                :
                 <>
                     <div className="dashboard-section">
                         <SectionHeader text="add revision to Course " />

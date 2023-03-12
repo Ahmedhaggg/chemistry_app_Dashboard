@@ -103,3 +103,11 @@ code {
 .content {
   width: calc(100% - 300px)
 }
+
+/* .dashboard {
+  
+} */
+
+.collapse .navbar-collapse {
+  transition: all 0.5s;
+}
